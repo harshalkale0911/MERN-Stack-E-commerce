@@ -12,7 +12,7 @@ const productsDir = path.join(__dirname, "products");
 [uploadsDir, productsDir].forEach((dir) => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
-    console.log(`✅ Created directory: ${dir}`);
+    console.log(`Created directory: ${dir}`);
   }
 });
 
