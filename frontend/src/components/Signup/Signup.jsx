@@ -3,7 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
-import axios from 'axios';
+import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -15,47 +15,35 @@ const Signup = () => {
   const handleFileSubmit = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // const allowedTypes = ["image/jpeg", "image/png"];
-      // if (!allowedTypes.includes(file.type)) {
-      //   alert("Invalid file type. Please select a .jpg or .png file.");
-      //   return;
-      // }
-      // if (file.size > 2 * 1024 * 1024) { // 2MB size limit
-      //   alert("File size exceeds 2MB. Please choose a smaller file.");
-      //   return;
-      // }
-
       const filePath = URL.createObjectURL(file);
       console.log("File path:", filePath);
       setAvatar(file);
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newForm = new FormData();
-    // newForm.append("file", fs.createReadStream(avatar))
     newForm.append("file", avatar);
     newForm.append("name", name);
     newForm.append("email", email);
     newForm.append("password", password);
-    // for (let pair of newForm.entries()) {
-    //   console.log(pair[0] + ': ' + pair[1]);
-    // }
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
-        "Accept": "any",
+        Accept: "any",
       },
     };
 
-    axios.post("http://10.1.77.124:8000/api/v2/user/create-user", newForm, config).then((res) => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.log(err);
-    });
+    axios
+      .post("http://localhost:8000/api/v2/user/create-user", newForm, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
