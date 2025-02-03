@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import Nav from "../components/nav";
+
 
 const CreateProduct = () => {
   const { id } = useParams();
@@ -109,13 +109,13 @@ const CreateProduct = () => {
       }
     } catch (err) {
       console.error("Error creating/updating product:", err);
-      alert("Failed to save product. Please check the data and try again.");
+      alert(err.message);
     }
   };
 
   return (
     <>
-      <Nav />
+      
       <div className="w-[90%] max-w-[500px] bg-white shadow h-auto rounded-[4px] p-4 mx-auto">
         <h5 className="text-[24px] font-semibold text-center">
           {isEdit ? "Edit Product" : "Create Product"}
