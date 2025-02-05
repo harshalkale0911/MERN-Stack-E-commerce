@@ -1,28 +1,49 @@
-// src/pages/Home.js
-import React, { useState, useEffect } from 'react';
-import Product from '../components/Product'; // Assuming Product component is in the components folder
-import { productData } from '../static/data'; // Import the product data
+// react-app/src/pages/Home.js
 
+import React, { useEffect, useState } from "react";
+import Product from "../components/Product";
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // For loading state
+  const [error, setError] = useState(null); // For error handling
 
   useEffect(() => {
-    // Set the products data on component mount
-    setProducts(productData);
+    fetch("http://localhost:8000/api/v2/product/get-products")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data.products);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("❌ Error fetching products:", err);
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) {
+    return (
+      <div className="text-center text-white mt-10">Loading products...</div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 mt-10">Error: {error}</div>;
+  }
+
   return (
-    <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {products.map((product) => (
-        <Product
-          key={product.id}
-          _id={product.id}
-          name={product.name}
-          images={product.image_Url.map((img) => img.url)} // Extracting image URLs
-          description={product.description}
-          price={product.discount_price || product.price} // Default to discount_price if available
-        />
-      ))}
+    <div className="w-full min-h-screen bg-neutral-800">
+      <h1 className="text-3xl text-center text-white py-6">Product Gallery</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
+        {products.map((product) => (
+          <Product key={product._id} {...product} />
+        ))}
+      </div>
     </div>
   );
 }
