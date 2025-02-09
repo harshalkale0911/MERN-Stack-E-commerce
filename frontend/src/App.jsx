@@ -11,6 +11,8 @@ const App = () => {
         <Route path='/login' element={<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/create-product" element={<CreateProduct />} />
+        {/* for edit product by id */}
+        <Route path="/create-product/:id" element={<CreateProduct />} />
         <Route path="/myproducts" element={<MyProducts />} />
       </Routes>
     </BrowserRouter>
