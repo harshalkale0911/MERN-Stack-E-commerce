@@ -1,14 +1,11 @@
 // src/components/NavBar.jsx
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-
     return (
         <nav className="bg-blue-600">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
