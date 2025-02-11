@@ -1,8 +1,9 @@
  
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import {LoginPage,SignupPage,Home,CreateProduct, MyProducts} from "./Routes";
+import {LoginPage,SignupPage,Home,CreateProduct, MyProducts, ProductDetails} from "./Routes";
 import "./App.css";
 import Cart from './pages/cart';
+ 
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
         <Route path="/create-product/:id" element={<CreateProduct />} />
         <Route path="/my-products" element={<MyProducts />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+
       </Routes>
     </BrowserRouter>
   )
