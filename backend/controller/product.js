@@ -113,6 +113,8 @@ router.get('/my-products', async (req, res) => {
 
 
 router.get('/product/:id', async (req, res) => {
+    // mile 15 line 
+    console.log("Fetching product");
     const { id } = req.params;
     try {
         const product = await Product.findById(id);

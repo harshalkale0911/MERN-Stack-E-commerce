@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import NavBar from "./Nav";
 function Myproduct({ _id, name, images, description, price }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const navigate = useNavigate();
@@ -34,6 +35,8 @@ function Myproduct({ _id, name, images, description, price }) {
       }
   };
     return (
+       <>
+      
         <div className="bg-neutral-200 p-4 rounded-lg shadow-md flex flex-col justify-between">
             <div className="w-full">
                 {currentImage && (
@@ -62,6 +65,7 @@ function Myproduct({ _id, name, images, description, price }) {
                 </button>
             </div>
         </div>
+        </>
     );
 }
 
