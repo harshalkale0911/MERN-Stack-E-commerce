@@ -8,4 +8,5 @@ import Cart from './pages/cart';
 import Profile from "./pages/profiles.jsx";
 import CreateAddress from "./pages/createAddress.jsx";
 import SelectAddress from "./pages/SelectAddress.jsx";
-export {LoginPage,SignupPage,Home,CreateProduct,MyProducts , ProductDetails  , Cart, Profile , CreateAddress , SelectAddress};
+import OrderConfirmation from "./pages/OrderConfirmation.jsx";
+export {LoginPage,SignupPage,Home,CreateProduct,MyProducts , ProductDetails  , Cart, Profile , CreateAddress , SelectAddress,OrderConfirmation};
