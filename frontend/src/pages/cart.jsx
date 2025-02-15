@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import CartProduct from '../components/auth/CartProduct';
 import NavBar from '../components/auth/Nav';
 import { useState, useEffect } from 'react';
@@ -5,6 +6,8 @@ import { useState, useEffect } from 'react';
 const Cart = () => {
 
     const [products, setProducts] = useState([]);
+    // mile 23
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:8000/api/v2/product/cartproducts?email=${'haryy@gmail.com'}`)
@@ -24,7 +27,9 @@ const Cart = () => {
       }, []);
     
       console.log("Products:", products);
-
+      const handlePlaceOrder = () => {
+        navigate('/select-address'); // Navigate to the Select Address page
+      };
     return (
         <div className='w-full h-screen'>
             <NavBar />
@@ -40,9 +45,18 @@ const Cart = () => {
                             ))
                         }
                     </div>
-                </div>
-            </div>
+                    <div className='w-full p-4 flex justify-end'>
+            <button
+              onClick={handlePlaceOrder}
+              className='bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600'
+            >
+              Place Order
+            </button>
+          </div>
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
+
 export default Cart;

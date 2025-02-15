@@ -7,4 +7,5 @@ import ProductDetails from "./pages/productDetails";
 import Cart from './pages/cart';
 import Profile from "./pages/profiles.jsx";
 import CreateAddress from "./pages/createAddress.jsx";
-export {LoginPage,SignupPage,Home,CreateProduct,MyProducts , ProductDetails  , Cart, Profile , CreateAddress};
+import SelectAddress from "./pages/SelectAddress.jsx";
+export {LoginPage,SignupPage,Home,CreateProduct,MyProducts , ProductDetails  , Cart, Profile , CreateAddress , SelectAddress};
