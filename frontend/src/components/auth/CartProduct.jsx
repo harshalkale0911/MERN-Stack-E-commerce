@@ -46,7 +46,8 @@ export default function CartProduct({ _id, name, images, quantity, price }) {
                 console.error('Error updating quantityVal:', err);
             });
     };
-	const currentImage = images[currentIndex];
+	const currentImage = images && images.length > 0 ? images[currentIndex]:null;
+    
 	return (
 		<div className="h-max w-full p-4 flex justify-between border-b border-neutral-300 bg-neutral-100 rounded-lg">
 			<div className="flex flex-col gap-y-2">

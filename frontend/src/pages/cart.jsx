@@ -1,6 +1,5 @@
 import CartProduct from '../components/auth/CartProduct';
 import NavBar from '../components/auth/Nav';
- 
 import { useState, useEffect } from 'react';
 
 const Cart = () => {
