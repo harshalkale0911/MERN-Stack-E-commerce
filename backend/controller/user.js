@@ -6,8 +6,7 @@ const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
-// const jwt = require("jsonwebtoken");
-// const sendMail = require("../utils/sendMail");
+ 
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
@@ -74,6 +73,7 @@ router.post(
         user,
     });
 }));
+
 router.get("/profile", catchAsyncErrors(async (req, res, next) => {
   const { email } = req.query;
   if (!email) {
