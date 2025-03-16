@@ -25,7 +25,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const user = require("./controller/user");
 app.use("/api/v2/user", user);
 app.use("/api/v2/product", product);
-app.use("/api/v2/orders", orders);
+app.use("/api/v2/orders", orders);``
 // Serve static files for uploads and products
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/products', express.static(path.join(__dirname, 'products')));
