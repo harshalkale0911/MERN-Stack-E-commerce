@@ -24,6 +24,7 @@ const Signup = () => {
     const emailError = ValidationFormObject.validteEmail(email);
     const passwordError = ValidationFormObject.validtePass(password);
     const newErrors = {};
+    
     if (nameError !== true) newErrors.name = nameError;
     if (emailError !== true) newErrors.email = emailError;
     if (passwordError !== true) newErrors.password = passwordError;

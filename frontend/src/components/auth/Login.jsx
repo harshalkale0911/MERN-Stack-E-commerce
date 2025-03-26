@@ -9,9 +9,9 @@ const Login = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submit behavior
+    e.preventDefault(); 
     try {
-      // Make the POST request to the backend (replace with your actual API endpoint)
+       
       const response = await axios.post("http://localhost:8000/api/v2/user/login", { email, password });
       
       // Assuming response contains a token or user data on successful login
