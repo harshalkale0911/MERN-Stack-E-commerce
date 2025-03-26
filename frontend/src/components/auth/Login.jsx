@@ -5,7 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setemail } from "../../store/userActions";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-
+axios.defaults.withCredentials = true;
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize navigate
