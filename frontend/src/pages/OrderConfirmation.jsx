@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import axios from '../axiosConfig';
 // 1) Import PayPalScriptProvider & PayPalButtons
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import NavBar from '../components/auth/nav';
@@ -31,8 +31,7 @@ const OrderConfirmation = () => {
         const fetchData = async () => {
             try {
                 // Fetch selected address
-                const addressResponse = await axios.get(
-                    'http://localhost:8000/api/v2/user/addresses',
+                const addressResponse = await axios.get('/api/v2/user/addresses',
                     {
                         params: { email: email },
                     }
@@ -50,8 +49,7 @@ const OrderConfirmation = () => {
                 setSelectedAddress(address);
 
                 // Fetch cart products
-                const cartResponse = await axios.get(
-                    'http://localhost:8000/api/v2/product/cartproducts',
+                const cartResponse = await axios.get('/api/v2/product/cartproducts',
                     {
                         params: { email: email },
                     }
@@ -66,9 +64,8 @@ const OrderConfirmation = () => {
                     _id: item.productId._id,
                     name: item.productId.name,
                     price: item.productId.price,
-                    images: item.productId.images.map(
-                        (imagePath) => `http://localhost:8000${imagePath}`
-                    ),
+                    images: item.productId.images.map((img) => `http://localhost:8000${img}`),
+                    
                     quantity: item.quantity,
                 }));
                 setCartItems(processedCartItems);
@@ -120,16 +117,17 @@ const OrderConfirmation = () => {
             };
 
             // Place order
-            const response = await axios.post(
-                'http://localhost:8000/api/v2/orders/place-order',
-                payload
-            );
-
-            console.log('Orders placed successfully:', response.data);
+            const response = await axios.post('/api/v2/orders/place-order', payload);
+            console.log('Order placed successfully:', response.data);
             // Navigate to success page
             navigate('/order-success');
         } catch (error) {
             console.error('Error placing order:', error);
+            setError(
+                error.response?.data?.message ||
+                error.message ||
+                'An unexpected error occurred while placing order.'
+            );
         }
     };
 
